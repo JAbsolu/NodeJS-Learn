@@ -1,20 +1,15 @@
-//nodemon automatically search for the index.js file
-//to exit nodemon in terminal use ctrl + c
+const logEvents = require('./logEvents');
+const EventEmitter = require('events');
 
-// cmd node install in termial will add node_modules directory
-//To add a dev dependency, use -D flag, example npm i nodemon -D
+class MyEmitter extends EventEmitter {};
 
-// ~ in front of version means to allow only patch version update
-// ^ in front of version means, allow patch and minor and patch version updates
+// initialize object
+const myEmitter = new MyEmitter();
 
-// cmd npm update, updates all pacakges
-// npm rm or npm uninstall remove/uninstall a dependency
+//add listener for log event
+myEmitter.on('log', (msg) => logEvents(msg));
 
-const { format } = require('date-fns');
-const { v4: uuid } = require('uuid');
-
-console.log(format(new Date(), 'yyyyMMdd\tHH:mm:ss')); // \t is tab
-
-console.log(uuid());
-
-console.log()
+setTimeout(() => {
+    //emit event
+    myEmitter.emit('log', 'Logevent emitted!')
+}, 2000); 
