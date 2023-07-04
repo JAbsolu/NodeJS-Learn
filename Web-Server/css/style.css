@@ -1,0 +1,10 @@
+.red {color:red}
+.black {background: black;}
+.white {color: white}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
